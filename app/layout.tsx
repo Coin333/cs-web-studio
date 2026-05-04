@@ -4,6 +4,9 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { RevealProvider } from "@/components/RevealProvider";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -12,7 +15,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CS-Web Studio — Fast, modern websites for local businesses",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} — Fast, modern websites for local businesses`,
+    template: `%s — ${SITE_NAME}`,
+  },
   description:
     "Solo web development practice that ships fast, mobile-first websites for local businesses in 2 to 5 days. Affordable. Modern. Built to convert.",
   keywords: [
@@ -23,10 +30,20 @@ export const metadata: Metadata = {
     "small business website",
   ],
   openGraph: {
-    title: "CS-Web Studio",
-    description:
-      "Fast, modern websites for local businesses. Built in days, not weeks.",
+    title: SITE_NAME,
+    description: SITE_TAGLINE,
+    url: SITE_URL,
+    siteName: SITE_NAME,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description: SITE_TAGLINE,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -43,6 +60,8 @@ export default function RootLayout({
           <main className="min-h-screen">{children}</main>
           <Footer />
         </RevealProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

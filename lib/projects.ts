@@ -58,28 +58,28 @@ export const PROJECTS: Project[] = [
     slug: "harbor-auto-detailing",
     name: "Harbor Auto Detailing",
     category: "Local service",
-    location: "Charleston, SC",
-    status: "Live project",
+    location: "Coastal markets",
+    status: "Concept",
     tagline: "From a Facebook page to a real booking pipeline.",
     blurb:
-      "A working auto detailer running everything off social posts and word of mouth. Built a 5-page site with online booking and instant quote requests.",
+      "Concept build for an auto detailer running everything off social posts and word of mouth. A 5-page site with online booking and instant quote requests.",
     problem:
-      "Customers had no way to see services or pricing without sending a DM. The owner was answering the same five questions every day, and most leads went cold before quoting.",
+      "Customers have no way to see services or pricing without sending a DM. The owner answers the same five questions every day, and most leads go cold before quoting.",
     approach:
       "Service-led layout with packages priced clearly, a booking flow that pre-qualifies the vehicle, and an SMS-friendly quote request form. Built mobile-first, since 80% of detail leads come from a phone.",
     outcome:
-      "Quote requests moved from DMs to a structured form. The owner replies in batches once a day instead of all day. Self-serve booking shows up on Google search and Maps.",
+      "Quote requests move from DMs to a structured form. The owner replies in batches once a day instead of all day. Self-serve booking surfaces on Google search and Maps.",
     metrics: [
-      { label: "Inquiries", value: "+38%" },
-      { label: "Reply time saved", value: "~4 hrs/wk" },
-      { label: "Mobile traffic", value: "82%" },
+      { label: "Pages", value: "5" },
+      { label: "Mobile-first", value: "100%" },
+      { label: "Inquiry funnel", value: "Structured" },
     ],
     highlights: [
       "Service packages with transparent pricing",
       "Online booking with vehicle pre-qualifier",
       "Quote form with photo upload",
       "Google Business Profile wired in",
-      "Local SEO setup for Charleston area",
+      "Local SEO setup",
     ],
     stack: ["Next.js", "Tailwind", "Vercel", "Resend"],
     timeline: "4 days",
@@ -96,10 +96,6 @@ export const PROJECTS: Project[] = [
       { kind: "service", label: "Service packages" },
       { kind: "booking", label: "Booking flow" },
     ],
-    quote: {
-      text: "Quote requests are way cleaner now. I batch replies once a day instead of all day.",
-      attribution: "Owner, Harbor Auto Detailing",
-    },
   },
   {
     slug: "northside-barber-co",

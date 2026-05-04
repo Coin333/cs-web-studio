@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Github, Mail, Twitter } from "lucide-react";
+import { Mail } from "lucide-react";
 import { Logo } from "./Logo";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -16,25 +17,12 @@ export function Footer() {
             </p>
             <div className="mt-6 flex items-center gap-2">
               <a
-                href="mailto:hello@cswebstudio.com"
+                href={`mailto:${CONTACT_EMAIL}`}
                 aria-label="Email"
-                className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
               >
                 <Mail className="w-4 h-4" />
-              </a>
-              <a
-                href="#"
-                aria-label="Twitter"
-                className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
-              >
-                <Twitter className="w-4 h-4" />
-              </a>
-              <a
-                href="#"
-                aria-label="GitHub"
-                className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
-              >
-                <Github className="w-4 h-4" />
+                {CONTACT_EMAIL}
               </a>
             </div>
           </div>

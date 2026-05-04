@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Mail, Clock, ShieldCheck } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact — CS-Web Studio",
@@ -72,10 +73,10 @@ export default function ContactPage() {
             <div className="mt-10 reveal text-sm text-zinc-500">
               Prefer email?{" "}
               <a
-                href="mailto:hello@cswebstudio.com"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="text-zinc-200 hover:text-white underline underline-offset-4 decoration-zinc-700 hover:decoration-indigo-400 transition-colors"
               >
-                hello@cswebstudio.com
+                {CONTACT_EMAIL}
               </a>
             </div>
           </div>

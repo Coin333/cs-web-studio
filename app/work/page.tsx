@@ -10,7 +10,15 @@ export const metadata: Metadata = {
     "Recent and concept projects: auto detailers, barbershops, cafes, tutors, gyms, and trades. See how each site converts visitors into customers.",
 };
 
-const CATEGORIES = ["All", "Live project", "Concept"];
+const CATEGORIES = [
+  "All",
+  "Local service",
+  "Barbershop",
+  "Cafe",
+  "Tutoring",
+  "Gym",
+  "Trades",
+];
 
 export default function WorkPage() {
   return (
@@ -27,13 +35,13 @@ export default function WorkPage() {
             Work
           </p>
           <h1 className="reveal text-5xl md:text-7xl font-bold tracking-tight text-gradient max-w-4xl leading-[1.05]">
-            Real builds and concept
-            <br className="hidden sm:inline" /> directions.
+            Concept directions across
+            <br className="hidden sm:inline" /> local industries.
           </h1>
           <p className="reveal mt-6 text-lg text-zinc-400 max-w-2xl leading-relaxed">
-            One live project plus five concept builds for the kinds of local
-            businesses I work with most. Every case study covers the problem,
-            the approach, and the outcome.
+            Six concept builds for the kinds of local businesses I work with
+            most. Every case study covers the problem, the approach, and the
+            outcome.
           </p>
 
           <div className="reveal mt-10 flex flex-wrap items-center gap-2">
@@ -58,7 +66,7 @@ export default function WorkPage() {
       <section className="relative pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {(() => {
-            const featured = PROJECTS.find((p) => p.status === "Live project")!;
+            const featured = PROJECTS[0];
             return (
               <Link
                 href={`/work/${featured.slug}`}
@@ -75,8 +83,11 @@ export default function WorkPage() {
                           border: `1px solid ${featured.primary}55`,
                         }}
                       >
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                        {featured.status}
+                        <span
+                          className="h-1.5 w-1.5 rounded-full"
+                          style={{ background: featured.bullet }}
+                        />
+                        Featured
                       </span>
                       <span className="text-xs text-zinc-500 inline-flex items-center gap-1">
                         <MapPin className="w-3 h-3" />
@@ -139,7 +150,7 @@ export default function WorkPage() {
       <section className="relative pb-24 md:pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-            {PROJECTS.filter((p) => p.status !== "Live project").map((p) => (
+            {PROJECTS.slice(1).map((p) => (
               <Link
                 key={p.slug}
                 href={`/work/${p.slug}`}

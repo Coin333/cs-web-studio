@@ -1,7 +1,32 @@
 import Link from "next/link";
 import { ArrowRight, Sparkles, Zap } from "lucide-react";
+import { SITE_DOMAIN } from "@/lib/site";
+
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+function nextBookingMonth() {
+  const now = new Date();
+  // After day 20, default to "next month" since the current month is mostly full
+  const offset = now.getDate() > 20 ? 1 : 0;
+  const target = new Date(now.getFullYear(), now.getMonth() + offset, 1);
+  return MONTHS[target.getMonth()];
+}
 
 export function Hero() {
+  const bookingMonth = nextBookingMonth();
   return (
     <section className="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
       {/* Background gradients */}
@@ -15,7 +40,7 @@ export function Hero() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm text-xs font-medium text-zinc-300 mb-8 reveal">
             <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-            Now booking April projects
+            Now booking {bookingMonth} projects
             <span className="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
           </div>
 
@@ -71,7 +96,7 @@ export function Hero() {
               <span className="browser-dot bg-yellow-500/80" />
               <span className="browser-dot bg-emerald-500/80" />
               <div className="ml-3 flex-1 h-6 rounded-md bg-zinc-900/60 border border-white/5 px-3 flex items-center text-[11px] text-zinc-500">
-                cswebstudio.com
+                {SITE_DOMAIN}
               </div>
             </div>
             <div className="relative aspect-[16/9] bg-gradient-to-br from-zinc-900 via-zinc-950 to-zinc-900">
@@ -90,18 +115,6 @@ export function Hero() {
                     <div className="h-10 w-28 rounded-xl bg-white/5 border border-white/10" />
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          {/* Floating stat cards */}
-          <div className="hidden md:block">
-            <div className="absolute hidden md:flex left-4 lg:left-12 -translate-y-32 items-center gap-3 rounded-xl bg-zinc-900/90 backdrop-blur border border-white/10 px-4 py-3 shadow-xl">
-              <div className="p-2 rounded-lg bg-emerald-500/10">
-                <Zap className="w-4 h-4 text-emerald-400" />
-              </div>
-              <div>
-                <div className="text-xs text-zinc-500">Avg. delivery</div>
-                <div className="text-sm font-semibold">3.2 days</div>
               </div>
             </div>
           </div>
