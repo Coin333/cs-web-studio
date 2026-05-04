@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink, MapPin, Sparkles } from "lucide-react";
 import { PROJECTS } from "@/lib/projects";
 import { MockScreen } from "@/components/MockScreen";
+import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 
 export function Portfolio() {
   const featured = PROJECTS[0];
@@ -112,7 +113,14 @@ export function Portfolio() {
                 }}
               />
               <div className="relative w-full">
-                <MockScreen project={featured} screen={featured.screens[0]} />
+                {featured.screenshots && featured.screenshots[0] ? (
+                  <ProjectScreenshot
+                    project={featured}
+                    shot={featured.screenshots[0]}
+                  />
+                ) : (
+                  <MockScreen project={featured} screen={featured.screens[0]} />
+                )}
               </div>
             </div>
           </div>

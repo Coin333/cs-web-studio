@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink, MapPin } from "lucide-react";
 import { PROJECTS } from "@/lib/projects";
 import { MockScreen } from "@/components/MockScreen";
+import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 
 export const metadata: Metadata = {
   title: "Work — CS Web Studio",
@@ -113,7 +114,18 @@ export default function WorkPage() {
                   }}
                 />
                 <div className="relative w-full">
-                  <MockScreen project={featured} screen={featured.screens[0]} />
+                  {featured.screenshots && featured.screenshots[0] ? (
+                    <ProjectScreenshot
+                      project={featured}
+                      shot={featured.screenshots[0]}
+                      priority
+                    />
+                  ) : (
+                    <MockScreen
+                      project={featured}
+                      screen={featured.screens[0]}
+                    />
+                  )}
                 </div>
               </div>
             </div>

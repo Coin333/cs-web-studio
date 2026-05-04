@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { getProject, getAdjacentProjects, PROJECTS } from "@/lib/projects";
 import { MockScreen } from "@/components/MockScreen";
+import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 
 interface Params {
   params: Promise<{ slug: string }>;
@@ -154,7 +155,15 @@ export default async function CaseStudyPage({ params }: Params) {
             </div>
 
             <div className="lg:col-span-5 lg:sticky lg:top-24">
-              <MockScreen project={project} screen={project.screens[0]} />
+              {project.screenshots && project.screenshots[0] ? (
+                <ProjectScreenshot
+                  project={project}
+                  shot={project.screenshots[0]}
+                  priority
+                />
+              ) : (
+                <MockScreen project={project} screen={project.screens[0]} />
+              )}
             </div>
           </div>
         </div>
@@ -252,14 +261,23 @@ export default async function CaseStudyPage({ params }: Params) {
             </div>
 
             <div className="lg:col-span-8 space-y-6">
-              {project.screens.slice(1).map((screen, i) => (
-                <div key={i}>
-                  <div className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-3">
-                    {screen.label}
-                  </div>
-                  <MockScreen project={project} screen={screen} />
-                </div>
-              ))}
+              {project.screenshots && project.screenshots.length > 1
+                ? project.screenshots.slice(1).map((shot) => (
+                    <div key={shot.src}>
+                      <div className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+                        {shot.label}
+                      </div>
+                      <ProjectScreenshot project={project} shot={shot} />
+                    </div>
+                  ))
+                : project.screens.slice(1).map((screen, i) => (
+                    <div key={i}>
+                      <div className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+                        {screen.label}
+                      </div>
+                      <MockScreen project={project} screen={screen} />
+                    </div>
+                  ))}
             </div>
           </div>
         </div>

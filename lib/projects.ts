@@ -10,6 +10,14 @@ export interface MockScreen {
   label: string;
 }
 
+export interface RealScreenshot {
+  src: string;
+  alt: string;
+  label: string;
+  width: number;
+  height: number;
+}
+
 export interface Project {
   slug: string;
   name: string;
@@ -35,8 +43,10 @@ export interface Project {
   primarySoft: string;
   surface: string;
   text: string;
-  // Mock screens (used in case-study mocks)
+  // Synthetic mock screens (used when no real screenshots are available)
   screens: MockScreen[];
+  // Real screenshots (preferred when present)
+  screenshots?: RealScreenshot[];
   // Quote (real, with permission only)
   quote?: { text: string; attribution: string };
   // Story: how this client came to work with the studio
@@ -88,6 +98,29 @@ export const PROJECTS: Project[] = [
       { kind: "hero", label: "Homepage hero" },
       { kind: "menu", label: "Clubs grid (20 schools)" },
       { kind: "trust", label: "RSVP funnel" },
+    ],
+    screenshots: [
+      {
+        src: "/work/sgvc/homepage.webp",
+        alt: "SGV Christian Club Collective homepage hero with the headline Christian clubs. One valley. One mission.",
+        label: "Homepage hero",
+        width: 1600,
+        height: 838,
+      },
+      {
+        src: "/work/sgvc/club-grid.webp",
+        alt: "Clubs page listing high schools with logos, locations, and Instagram handles.",
+        label: "Per-campus clubs grid",
+        width: 1600,
+        height: 838,
+      },
+      {
+        src: "/work/sgvc/rsvp-funnel.webp",
+        alt: "Everything Night flagship event page with date, time, location, and RSVP button.",
+        label: "Everything Night RSVP funnel",
+        width: 1600,
+        height: 838,
+      },
     ],
     quote: undefined,
     story:
