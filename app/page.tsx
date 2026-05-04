@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/Hero";
 import { ValueProps } from "@/components/sections/ValueProps";
 import { HowItWorks } from "@/components/sections/HowItWorks";
+import { ScrollScrubVideo } from "@/components/sections/ScrollScrubVideo";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { CTA } from "@/components/sections/CTA";
@@ -11,6 +12,11 @@ export default function HomePage() {
       <Hero />
       <ValueProps />
       <HowItWorks />
+      <ScrollScrubVideo
+        src="/scrub.mp4"
+        poster="/scrub-poster.jpg"
+        subheading="Scroll-driven motion, mobile-first layouts, and pages tuned to convert. The same techniques Apple uses, applied to your local business."
+      />
       <Portfolio />
       <Testimonials />
       <CTA />
