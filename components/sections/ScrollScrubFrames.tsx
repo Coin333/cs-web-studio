@@ -2,12 +2,12 @@
 import { useEffect, useRef, useState } from "react";
 
 interface Props {
-  framePrefix: string; // e.g. "/scrub-frames/frame_"
+  framePrefix: string;
   frameCount: number;
   frameDigits?: number;
   frameExt?: string;
-  width: number; // intrinsic frame width (for canvas back buffer)
-  height: number; // intrinsic frame height
+  width: number;
+  height: number;
   heading?: React.ReactNode;
   subheading?: string;
 }
@@ -25,10 +25,10 @@ export function ScrollScrubFrames({
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
-  const currentFrameRef = useRef(0);
-  const targetFrameRef = useRef(0);
-  const drawnFrameRef = useRef(-1);
+  const currentRef = useRef(0);
+  const targetRef = useRef(0);
   const rafRef = useRef<number | null>(null);
+  const dirtyRef = useRef(true);
   const [loaded, setLoaded] = useState(0);
 
   // Preload frames
@@ -46,10 +46,7 @@ export function ScrollScrubFrames({
         if (cancelled) return;
         count++;
         setLoaded(count);
-        // Redraw the current target frame as soon as it becomes available
-        if (i === Math.round(targetFrameRef.current)) {
-          drawnFrameRef.current = -1; // force redraw
-        }
+        dirtyRef.current = true;
       };
       images[i] = img;
     }
@@ -59,7 +56,6 @@ export function ScrollScrubFrames({
     };
   }, [framePrefix, frameCount, frameDigits, frameExt]);
 
-  // Scroll-driven drawing loop
   useEffect(() => {
     const section = sectionRef.current;
     const canvas = canvasRef.current;
@@ -67,45 +63,59 @@ export function ScrollScrubFrames({
     const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
-    // Sharp rendering on retina
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     ctx.scale(dpr, dpr);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
 
-    const drawFrame = (frame: number) => {
-      const idx = Math.max(0, Math.min(frameCount - 1, frame));
-      const img = imagesRef.current[idx];
-      if (!img || !img.complete || img.naturalWidth === 0) {
-        // Fall back to nearest available frame
-        for (let off = 1; off < frameCount; off++) {
-          const a = imagesRef.current[idx - off];
-          const b = imagesRef.current[idx + off];
-          if (a && a.complete && a.naturalWidth > 0) {
-            ctx.drawImage(a, 0, 0, width, height);
-            return;
-          }
-          if (b && b.complete && b.naturalWidth > 0) {
-            ctx.drawImage(b, 0, 0, width, height);
-            return;
-          }
-        }
+    const drawAt = (frameFloat: number) => {
+      const lower = Math.max(
+        0,
+        Math.min(frameCount - 1, Math.floor(frameFloat)),
+      );
+      const upper = Math.min(frameCount - 1, lower + 1);
+      const t = frameFloat - lower;
+
+      const imgA = imagesRef.current[lower];
+      const imgB = imagesRef.current[upper];
+      const aReady = imgA && imgA.complete && imgA.naturalWidth > 0;
+      const bReady = imgB && imgB.complete && imgB.naturalWidth > 0;
+
+      if (!aReady && !bReady) return;
+
+      ctx.globalAlpha = 1;
+      // Draw the lower frame as the base. If lower not ready, fall back to upper.
+      if (aReady) {
+        ctx.drawImage(imgA, 0, 0, width, height);
+      } else {
+        ctx.drawImage(imgB!, 0, 0, width, height);
         return;
       }
-      ctx.drawImage(img, 0, 0, width, height);
+
+      // Blend in the upper frame at fractional alpha for sub-frame smoothing.
+      if (bReady && upper !== lower && t > 0.001) {
+        ctx.globalAlpha = t;
+        ctx.drawImage(imgB, 0, 0, width, height);
+        ctx.globalAlpha = 1;
+      }
     };
 
+    // Easing: tighter when scroll is moving quickly, gentle when settling.
     const tick = () => {
-      const target = targetFrameRef.current;
-      const current = currentFrameRef.current;
-      // Lerp toward target for buttery smoothing
-      const next = current + (target - current) * 0.18;
-      currentFrameRef.current = next;
+      const target = targetRef.current;
+      const current = currentRef.current;
+      const delta = target - current;
+      const absDelta = Math.abs(delta);
 
-      const rounded = Math.round(next);
-      if (rounded !== drawnFrameRef.current) {
-        drawFrame(rounded);
-        drawnFrameRef.current = rounded;
+      if (absDelta > 0.0005 || dirtyRef.current) {
+        // Adaptive lerp: bigger delta -> faster catch-up, small delta -> smooth settle.
+        const factor = Math.min(0.5, 0.18 + absDelta * 0.05);
+        const next = absDelta < 0.001 ? target : current + delta * factor;
+        currentRef.current = next;
+        drawAt(next);
+        dirtyRef.current = false;
       }
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -114,11 +124,12 @@ export function ScrollScrubFrames({
       const rect = section.getBoundingClientRect();
       const total = rect.height - window.innerHeight;
       const progress = Math.min(1, Math.max(0, -rect.top / Math.max(1, total)));
-      targetFrameRef.current = progress * (frameCount - 1);
+      targetRef.current = progress * (frameCount - 1);
     };
 
     update();
-    drawFrame(0);
+    drawAt(0);
+    dirtyRef.current = true;
     rafRef.current = requestAnimationFrame(tick);
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);

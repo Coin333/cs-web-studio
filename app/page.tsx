@@ -13,7 +13,7 @@ export default function HomePage() {
       <HowItWorks />
       <ScrollScrubFrames
         framePrefix="/scrub-frames/frame_"
-        frameCount={145}
+        frameCount={358}
         width={1024}
         height={576}
         subheading="Scroll-driven motion, mobile-first layouts, and pages tuned to convert. The same techniques Apple uses, applied to your local business."
