@@ -18,10 +18,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
 const SRC = resolve(ROOT, "public/logo-full.png"); // committed source
 
-// Bounds of the icon glyph inside the 2048x2048 brand image.
-// Tight enough to fill the frame but with breathing room. Avoids
-// catching the wordmark below (which starts around y=1430).
-const CROP = { left: 600, top: 510, width: 820, height: 820 };
+// The current source is already a clean square crop of the icon glyph,
+// so we use the full image. If a future source has a wordmark or padding
+// to crop out, set explicit bounds here.
+const CROP = null; // null = use full image
 
 function roundedSvg(size, radius) {
   return Buffer.from(
@@ -32,8 +32,9 @@ function roundedSvg(size, radius) {
 }
 
 async function buildOne({ size, radius, out }) {
-  const buf = await sharp(SRC)
-    .extract(CROP)
+  let pipe = sharp(SRC);
+  if (CROP) pipe = pipe.extract(CROP);
+  const buf = await pipe
     .resize(size, size, { fit: "cover" })
     .flatten({ background: "#ffffff" })
     .png()
