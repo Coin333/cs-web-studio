@@ -4,7 +4,7 @@ import { ArrowRight, MessageCircle } from "lucide-react";
 import { FaqItem } from "@/components/FaqItem";
 
 export const metadata: Metadata = {
-  title: "FAQ — CS-Web Studio",
+  title: "FAQ — CS Web Studio",
   description:
     "Common questions about pricing, timelines, edits, hosting, and what is actually included with each website package.",
 };

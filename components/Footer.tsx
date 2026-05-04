@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Mail } from "lucide-react";
+import { Mail, Instagram } from "lucide-react";
 import { Logo } from "./Logo";
-import { CONTACT_EMAIL } from "@/lib/site";
+import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -15,7 +15,7 @@ export function Footer() {
               Fast, modern websites for local businesses. Built in days, not
               weeks.
             </p>
-            <div className="mt-6 flex items-center gap-2">
+            <div className="mt-6 flex flex-wrap items-center gap-2">
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
                 aria-label="Email"
@@ -23,6 +23,15 @@ export function Footer() {
               >
                 <Mail className="w-4 h-4" />
                 {CONTACT_EMAIL}
+              </a>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
+              >
+                <Instagram className="w-4 h-4" />@{INSTAGRAM_HANDLE}
               </a>
             </div>
           </div>
@@ -54,7 +63,7 @@ export function Footer() {
 
         <div className="mt-14 pt-6 border-t border-zinc-800/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-xs text-zinc-500">
-            &copy; {year} CS-Web Studio. All rights reserved.
+            &copy; {year} CS Web Studio. All rights reserved.
           </p>
           <p className="text-xs text-zinc-500">
             Built with Next.js, Tailwind, and Vercel.

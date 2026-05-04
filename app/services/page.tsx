@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Services and Pricing — CS-Web Studio",
+  title: "Services and Pricing — CS Web Studio",
   description:
     "Flat-fee website packages for local businesses. Starter, Standard, and Larger Builds. Optional monthly maintenance.",
 };

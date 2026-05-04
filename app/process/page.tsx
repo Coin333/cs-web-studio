@@ -11,9 +11,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Process — CS-Web Studio",
+  title: "Process — CS Web Studio",
   description:
-    "How CS-Web Studio ships a website in 2 to 5 days. From the first email to a live launch, with the free homepage preview built in.",
+    "How CS Web Studio ships a website in 2 to 5 days. From the first email to a live launch, with the free homepage preview built in.",
 };
 
 const PHASES = [

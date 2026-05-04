@@ -13,7 +13,7 @@ export function Logo({ className }: { className?: string }) {
         <span className="absolute inset-0 rounded-lg ring-1 ring-white/10" />
       </span>
       <span className="font-semibold tracking-tight text-zinc-100">
-        CS-Web<span className="text-zinc-500"> Studio</span>
+        CS Web<span className="text-zinc-500"> Studio</span>
       </span>
     </Link>
   );

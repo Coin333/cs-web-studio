@@ -52,7 +52,7 @@ export const PROJECTS: Project[] = [
     status: "Live project",
     tagline: "20 schools. One collective. One website.",
     blurb:
-      "A regional network of high school Christian clubs across the San Gabriel Valley needed a single home on the web. Co-built the site, helped shape the visual system, and shipped a multi-page Next.js build with a focused RSVP funnel for their flagship event.",
+      "A regional network of high school Christian clubs across the San Gabriel Valley needed a single home on the web. Built the site end to end, designed the visual system, and shipped a multi-page Next.js build with a focused RSVP funnel for their flagship event.",
     problem:
       "The collective spans 20 high schools, dozens of student leaders, churches, and a flagship gathering called Everything Night. Before the site, all of that lived in scattered Instagrams and group chats. New students had no way to find their campus club, parents had no way to verify it was real, and the org had nowhere to send a curious freshman.",
     approach:
@@ -74,7 +74,7 @@ export const PROJECTS: Project[] = [
       "Sitewide preserved-aspect images for fast LCP on mobile",
     ],
     stack: ["Next.js", "Tailwind CSS", "TypeScript", "Vercel"],
-    timeline: "Co-built",
+    timeline: "A couple of weekends",
     package: "Premium",
     icon: Users,
     liveUrl: "https://sgvc.cc",
@@ -91,7 +91,7 @@ export const PROJECTS: Project[] = [
     ],
     quote: undefined,
     story:
-      "First real client project. A friend was helping start the collective and needed a serious site fast. We co-built it across a couple of weekends, with me focused on the front-end design system and the page architecture. It is now the org's primary public presence and the funnel for their flagship gathering. The bar this project set, calm visual system, real CTAs, fast mobile, is the bar every CS-Web Studio site is held to.",
+      "First real client project. The collective needed a serious site fast, and I built it for them across a couple of weekends. It is now the org's primary public presence and the funnel for their flagship gathering. The bar this project set, calm visual system, real CTAs, fast mobile, is the bar every CS Web Studio site is held to.",
   },
 ];
 

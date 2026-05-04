@@ -37,7 +37,7 @@ export function ValueProps() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-16 reveal">
           <p className="text-sm font-semibold uppercase tracking-wider text-indigo-400 mb-3">
-            Why CS-Web Studio
+            Why CS Web Studio
           </p>
           <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gradient">
             Built like a startup. Priced like a freelancer.

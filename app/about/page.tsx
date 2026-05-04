@@ -12,9 +12,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About — CS-Web Studio",
+  title: "About — CS Web Studio",
   description:
-    "CS-Web Studio is a solo practice run by Colin Sweeney. Fast, modern websites for local businesses, built without agency overhead.",
+    "CS Web Studio is a solo practice run by Colin Sweeney. Fast, modern websites for local businesses, built without agency overhead.",
 };
 
 const PRINCIPLES = [
@@ -69,7 +69,7 @@ export default function AboutPage() {
             shipped in days.
           </h1>
           <p className="reveal mt-7 text-lg md:text-xl text-zinc-400 leading-relaxed max-w-2xl">
-            CS-Web Studio is a solo web development practice run by Colin
+            CS Web Studio is a solo web development practice run by Colin
             Sweeney. The studio exists to put modern, fast, beautifully built
             websites in the hands of small businesses, at prices that make sense
             for the kind of customer who walks past their door.
@@ -112,14 +112,14 @@ export default function AboutPage() {
                 wider than it should be.
               </p>
               <p>
-                CS-Web Studio is the answer to that gap. One person. Modern
+                CS Web Studio is the answer to that gap. One person. Modern
                 tools. Honest pricing. Sites built the way a startup would build
                 them, sold at a price a barbershop or a tutor or a cafe can pay
                 without flinching.
               </p>
               <p>
                 The first real client was a regional nonprofit, the SGV
-                Christian Club Collective. Co-built the site over a couple of
+                Christian Club Collective. I built the site over a couple of
                 weekends. It taught me what every project since has been
                 measured against: ship fast, keep it calm, make every CTA do
                 real work.

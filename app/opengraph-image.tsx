@@ -61,7 +61,7 @@ export default async function Image() {
               letterSpacing: -0.3,
             }}
           >
-            CS-Web<span style={{ color: "#71717a" }}> Studio</span>
+            CS Web<span style={{ color: "#71717a" }}> Studio</span>
           </div>
         </div>
 

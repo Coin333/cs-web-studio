@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Mail, Clock, ShieldCheck } from "lucide-react";
+import { Mail, Clock, ShieldCheck, Instagram } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
-import { CONTACT_EMAIL } from "@/lib/site";
+import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact — CS-Web Studio",
+  title: "Contact — CS Web Studio",
   description:
     "Send a few details about your business and get a free homepage preview within 24 hours.",
 };
@@ -70,14 +70,27 @@ export default function ContactPage() {
               ))}
             </div>
 
-            <div className="mt-10 reveal text-sm text-zinc-500">
-              Prefer email?{" "}
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="text-zinc-200 hover:text-white underline underline-offset-4 decoration-zinc-700 hover:decoration-indigo-400 transition-colors"
-              >
-                {CONTACT_EMAIL}
-              </a>
+            <div className="mt-10 reveal flex flex-col gap-2 text-sm text-zinc-500">
+              <div>
+                Prefer email?{" "}
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="text-zinc-200 hover:text-white underline underline-offset-4 decoration-zinc-700 hover:decoration-indigo-400 transition-colors"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+              </div>
+              <div>
+                On Instagram?{" "}
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-zinc-200 hover:text-white underline underline-offset-4 decoration-zinc-700 hover:decoration-indigo-400 transition-colors"
+                >
+                  <Instagram className="w-3.5 h-3.5" />@{INSTAGRAM_HANDLE}
+                </a>
+              </div>
             </div>
           </div>
 

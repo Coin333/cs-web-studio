@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const project = getProject(slug);
   if (!project) return { title: "Not found" };
   return {
-    title: `${project.name} — CS-Web Studio`,
+    title: `${project.name} — CS Web Studio`,
     description: project.blurb,
   };
 }

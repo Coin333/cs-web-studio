@@ -5,9 +5,9 @@ import { PROJECTS } from "@/lib/projects";
 import { MockScreen } from "@/components/MockScreen";
 
 export const metadata: Metadata = {
-  title: "Work — CS-Web Studio",
+  title: "Work — CS Web Studio",
   description:
-    "Real client work shipped by CS-Web Studio. Live project: SGV Christian Club Collective.",
+    "Real client work shipped by CS Web Studio. Live project: SGV Christian Club Collective.",
 };
 
 export default function WorkPage() {
@@ -30,7 +30,7 @@ export default function WorkPage() {
             <br className="hidden sm:inline" /> Many more coming.
           </h1>
           <p className="reveal mt-6 text-lg text-zinc-400 max-w-2xl leading-relaxed">
-            CS-Web Studio is a young practice. The portfolio is intentionally
+            CS Web Studio is a young practice. The portfolio is intentionally
             small and honest: every site listed here is real, shipped, and
             visitable on the open web.
           </p>
