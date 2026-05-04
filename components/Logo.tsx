@@ -7,7 +7,7 @@ export function Logo({ className }: { className?: string }) {
       href="/"
       className={`group flex items-center gap-2.5 ${className ?? ""}`}
     >
-      <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-lg overflow-hidden bg-white shadow-md shadow-black/30 ring-1 ring-white/10">
+      <span className="relative inline-flex h-8 w-8 items-center justify-center">
         <Image
           src="/logo-icon.png"
           alt="CS Web Studio logo"

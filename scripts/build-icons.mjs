@@ -34,11 +34,7 @@ function roundedSvg(size, radius) {
 async function buildOne({ size, radius, out }) {
   let pipe = sharp(SRC);
   if (CROP) pipe = pipe.extract(CROP);
-  const buf = await pipe
-    .resize(size, size, { fit: "cover" })
-    .flatten({ background: "#ffffff" })
-    .png()
-    .toBuffer();
+  const buf = await pipe.resize(size, size, { fit: "cover" }).png().toBuffer();
 
   if (radius > 0) {
     await sharp(buf)
