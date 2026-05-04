@@ -56,9 +56,10 @@ export function Footer() {
               Resources
             </h3>
             <ul className="space-y-2.5">
-              <FooterLink href="/#work">Recent Work</FooterLink>
-              <FooterLink href="/#process">Process</FooterLink>
-              <FooterLink href="/contact">Free Preview</FooterLink>
+              <FooterLink href="/work">Work</FooterLink>
+              <FooterLink href="/process">Process</FooterLink>
+              <FooterLink href="/faq">FAQ</FooterLink>
+              <FooterLink href="/contact">Free preview</FooterLink>
             </ul>
           </div>
         </div>

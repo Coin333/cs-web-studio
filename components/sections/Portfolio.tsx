@@ -1,57 +1,11 @@
-import {
-  ArrowUpRight,
-  Scissors,
-  UtensilsCrossed,
-  GraduationCap,
-  Briefcase,
-} from "lucide-react";
-
-const PROJECTS = [
-  {
-    label: "Live Project",
-    title: "Local Business Website",
-    blurb: "Outdated brochure site to a modern conversion-focused homepage.",
-    accent: "from-indigo-500/30 to-violet-500/10",
-    icon: Briefcase,
-    metric: "+38% inquiries",
-    bullet: "#818cf8",
-    real: true,
-  },
-  {
-    label: "Concept",
-    title: "Northside Barber Co.",
-    blurb:
-      "Booking-first redesign with online scheduling and modern brand polish.",
-    accent: "from-amber-500/25 to-rose-500/10",
-    icon: Scissors,
-    metric: "Online bookings 24/7",
-    bullet: "#fbbf24",
-    real: false,
-  },
-  {
-    label: "Concept",
-    title: "Casa Verde Cafe",
-    blurb: "Menu-led design with a one-tap mobile order flow front and center.",
-    accent: "from-emerald-500/25 to-teal-500/10",
-    icon: UtensilsCrossed,
-    metric: "Mobile-first ordering",
-    bullet: "#34d399",
-    real: false,
-  },
-  {
-    label: "Concept",
-    title: "Mira Tutoring",
-    blurb:
-      "Trust-led layout with simple inquiry funnel and credibility markers.",
-    accent: "from-sky-500/25 to-indigo-500/10",
-    icon: GraduationCap,
-    metric: "Trust-led inquiry funnel",
-    bullet: "#38bdf8",
-    real: false,
-  },
-];
+import Link from "next/link";
+import { ArrowUpRight, ArrowRight, MapPin } from "lucide-react";
+import { PROJECTS } from "@/lib/projects";
+import { MockScreen } from "@/components/MockScreen";
 
 export function Portfolio() {
+  const featured = PROJECTS.slice(0, 4);
+
   return (
     <section
       id="work"
@@ -64,72 +18,90 @@ export function Portfolio() {
               Recent work
             </p>
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gradient">
-              Real sites. Real results.
+              Real builds. Real outcomes.
             </h2>
             <p className="mt-5 text-lg text-zinc-400 leading-relaxed">
-              A live build plus three concept directions for the kinds of local
-              businesses I work with most often.
+              One live project plus concept directions for the kinds of local
+              businesses I work with most. Each case study covers the problem,
+              approach, and outcome.
             </p>
           </div>
+          <Link
+            href="/work"
+            className="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-zinc-300 hover:text-white transition-colors"
+          >
+            View all work
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-          {PROJECTS.map((p) => (
-            <article
-              key={p.title}
+          {featured.map((p) => (
+            <Link
+              key={p.slug}
+              href={`/work/${p.slug}`}
               className="reveal group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 hover:border-zinc-700 transition-all duration-300"
             >
-              {/* visual */}
               <div className="relative aspect-[16/10] overflow-hidden">
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${p.accent}`}
                 />
-                <div className="absolute inset-0 grid-bg opacity-50" />
-                <div className="absolute inset-6 rounded-xl bg-zinc-950/60 backdrop-blur-sm border border-white/5 flex flex-col p-5">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="w-2 h-2 rounded-full bg-red-500/70" />
-                    <span className="w-2 h-2 rounded-full bg-yellow-500/70" />
-                    <span className="w-2 h-2 rounded-full bg-emerald-500/70" />
-                  </div>
-                  <div className="flex-1 flex items-center justify-center">
-                    <div className="flex flex-col items-center gap-3">
-                      <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                        <p.icon className="w-6 h-6 text-zinc-200" />
-                      </div>
-                      <div className="h-3 w-32 rounded-full bg-white/15" />
-                      <div className="h-2 w-44 rounded-full bg-white/10" />
-                    </div>
-                  </div>
+                <div className="absolute inset-0 grid-bg opacity-40" />
+                <div className="absolute inset-6">
+                  <MockScreen project={p} screen={p.screens[0]} />
                 </div>
                 <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-950/80 backdrop-blur border border-white/10 text-[11px] font-medium text-zinc-200">
                   <span
                     className="h-1.5 w-1.5 rounded-full"
-                    style={{ backgroundColor: p.bullet }}
+                    style={{
+                      background:
+                        p.status === "Live project" ? "#34d399" : p.bullet,
+                    }}
                   />
-                  {p.label}
+                  {p.status}
+                </div>
+                <div className="absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-zinc-950/80 backdrop-blur border border-white/10 text-[11px] font-medium text-zinc-300">
+                  <p.icon className="w-3 h-3" />
+                  {p.category}
                 </div>
               </div>
 
-              {/* meta */}
               <div className="p-6">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <h3 className="text-xl font-semibold text-zinc-100">
-                      {p.title}
+                      {p.name}
                     </h3>
                     <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
-                      {p.blurb}
+                      {p.tagline}
                     </p>
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-zinc-500 group-hover:text-indigo-400 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
                 </div>
-                <div className="mt-5 inline-flex items-center gap-2 text-xs font-medium text-zinc-300 bg-white/5 border border-white/10 rounded-full px-3 py-1">
-                  <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
-                  {p.metric}
+                <div className="mt-5 flex flex-wrap gap-1.5">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 border border-white/10 text-zinc-300">
+                    <span className="h-1 w-1 rounded-full bg-indigo-400" />
+                    {p.metrics[0].value}
+                    <span className="text-zinc-500">{p.metrics[0].label}</span>
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 border border-white/10 text-zinc-400">
+                    <MapPin className="w-3 h-3" />
+                    {p.location}
+                  </span>
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
+        </div>
+
+        <div className="mt-10 text-center md:hidden">
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-300 hover:text-white transition-colors"
+          >
+            View all work
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </section>

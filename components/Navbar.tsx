@@ -8,10 +8,11 @@ import { Logo } from "./Logo";
 import { cn } from "@/lib/utils";
 
 const NAV = [
-  { href: "/", label: "Home" },
+  { href: "/work", label: "Work" },
   { href: "/services", label: "Services" },
+  { href: "/process", label: "Process" },
+  { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {

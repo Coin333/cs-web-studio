@@ -82,7 +82,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {[
               { value: "2 to 5", label: "day delivery" },
-              { value: "$150+", label: "starter pricing" },
+              { value: "$200+", label: "starter pricing" },
               { value: "100%", label: "mobile-first" },
               { value: "1", label: "person you talk to" },
             ].map((s) => (
