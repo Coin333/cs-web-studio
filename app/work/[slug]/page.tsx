@@ -7,8 +7,10 @@ import {
   ArrowUpRight,
   Calendar,
   CheckCircle2,
+  ExternalLink,
   MapPin,
   Quote,
+  Sparkles,
   Tag,
 } from "lucide-react";
 import { getProject, getAdjacentProjects, PROJECTS } from "@/lib/projects";
@@ -96,6 +98,17 @@ export default async function CaseStudyPage({ params }: Params) {
                   <Calendar className="w-3 h-3" />
                   Built in {project.timeline}
                 </span>
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-medium text-indigo-300 hover:text-indigo-200"
+                  >
+                    Visit live site
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
               </div>
 
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gradient leading-[1.05]">
@@ -124,6 +137,20 @@ export default async function CaseStudyPage({ params }: Params) {
                   </div>
                 ))}
               </div>
+
+              {project.story && (
+                <div className="mt-10 rounded-2xl border border-indigo-500/20 bg-indigo-500/[0.04] p-6 md:p-7 max-w-2xl">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Sparkles className="w-4 h-4 text-indigo-300" />
+                    <span className="text-xs font-semibold uppercase tracking-wider text-indigo-300">
+                      First client
+                    </span>
+                  </div>
+                  <p className="text-zinc-200 leading-relaxed">
+                    {project.story}
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="lg:col-span-5 lg:sticky lg:top-24">
@@ -257,42 +284,48 @@ export default async function CaseStudyPage({ params }: Params) {
       )}
 
       {/* Adjacent navigation */}
-      <section className="relative py-16 md:py-20 border-t border-zinc-800/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {prev && (
-              <Link
-                href={`/work/${prev.slug}`}
-                className="group rounded-2xl border border-zinc-800 hover:border-zinc-700 bg-zinc-900/40 p-6 transition-colors"
-              >
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2 inline-flex items-center gap-1">
-                  <ArrowLeft className="w-3 h-3" />
-                  Previous
-                </div>
-                <div className="text-lg font-semibold text-zinc-100 group-hover:text-white">
-                  {prev.name}
-                </div>
-                <div className="text-sm text-zinc-400 mt-1">{prev.tagline}</div>
-              </Link>
-            )}
-            {next && (
-              <Link
-                href={`/work/${next.slug}`}
-                className="group rounded-2xl border border-zinc-800 hover:border-zinc-700 bg-zinc-900/40 p-6 transition-colors text-right"
-              >
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2 inline-flex items-center gap-1">
-                  Next
-                  <ArrowRight className="w-3 h-3" />
-                </div>
-                <div className="text-lg font-semibold text-zinc-100 group-hover:text-white">
-                  {next.name}
-                </div>
-                <div className="text-sm text-zinc-400 mt-1">{next.tagline}</div>
-              </Link>
-            )}
+      {(prev || next) && (
+        <section className="relative py-16 md:py-20 border-t border-zinc-800/60">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {prev && (
+                <Link
+                  href={`/work/${prev.slug}`}
+                  className="group rounded-2xl border border-zinc-800 hover:border-zinc-700 bg-zinc-900/40 p-6 transition-colors"
+                >
+                  <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2 inline-flex items-center gap-1">
+                    <ArrowLeft className="w-3 h-3" />
+                    Previous
+                  </div>
+                  <div className="text-lg font-semibold text-zinc-100 group-hover:text-white">
+                    {prev.name}
+                  </div>
+                  <div className="text-sm text-zinc-400 mt-1">
+                    {prev.tagline}
+                  </div>
+                </Link>
+              )}
+              {next && (
+                <Link
+                  href={`/work/${next.slug}`}
+                  className="group rounded-2xl border border-zinc-800 hover:border-zinc-700 bg-zinc-900/40 p-6 transition-colors text-right"
+                >
+                  <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2 inline-flex items-center gap-1">
+                    Next
+                    <ArrowRight className="w-3 h-3" />
+                  </div>
+                  <div className="text-lg font-semibold text-zinc-100 group-hover:text-white">
+                    {next.name}
+                  </div>
+                  <div className="text-sm text-zinc-400 mt-1">
+                    {next.tagline}
+                  </div>
+                </Link>
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="relative py-20 md:py-24 border-t border-zinc-800/60">

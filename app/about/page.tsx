@@ -3,17 +3,18 @@ import Link from "next/link";
 import {
   ArrowRight,
   Code2,
-  Gauge,
-  Layers,
-  HandHeart,
   Compass,
+  Gauge,
+  HandHeart,
+  Layers,
+  Sparkles,
   Star,
 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About — CS-Web Studio",
   description:
-    "CS-Web Studio is a solo web development practice focused on shipping fast, modern sites for local businesses without agency pricing or delays.",
+    "CS-Web Studio is a solo practice run by Colin Sweeney. Fast, modern websites for local businesses, built without agency overhead.",
 };
 
 const PRINCIPLES = [
@@ -63,16 +64,71 @@ export default function AboutPage() {
             About the studio
           </p>
           <h1 className="reveal text-5xl md:text-7xl font-bold tracking-tight text-gradient leading-[1.05]">
-            A solo studio that
+            Built by hand,
             <br />
-            ships in days.
+            shipped in days.
           </h1>
           <p className="reveal mt-7 text-lg md:text-xl text-zinc-400 leading-relaxed max-w-2xl">
-            CS-Web Studio is a solo web development practice focused on building
-            fast, modern websites for local businesses. The goal is simple: help
-            small businesses look professional online without agency pricing or
-            delays.
+            CS-Web Studio is a solo web development practice run by Colin
+            Sweeney. The studio exists to put modern, fast, beautifully built
+            websites in the hands of small businesses, at prices that make sense
+            for the kind of customer who walks past their door.
           </p>
+        </div>
+      </section>
+
+      {/* Story */}
+      <section className="relative py-16 md:py-24 border-t border-zinc-800/60">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
+            <div className="md:col-span-4">
+              <div className="md:sticky md:top-28">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-5">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  The story
+                </div>
+                <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gradient">
+                  Colin Sweeney.
+                </h2>
+                <p className="mt-3 text-zinc-400 text-sm">
+                  Founder + sole builder
+                </p>
+              </div>
+            </div>
+            <div className="md:col-span-8 space-y-5 text-zinc-300 leading-relaxed">
+              <p>
+                The first website I designed went up about two years ago. It was
+                small. The layout was rough. The copy was worse. But the feeling
+                of clicking publish and watching it work, that was the thing
+                that stuck.
+              </p>
+              <p>
+                Most local businesses do not need an agency. They need something
+                that looks like it belongs in 2026, loads in under a second, and
+                tells a customer what to do next. After helping friends and
+                family with quick sites here and there, it became obvious that
+                the gap between &ldquo;a real working modern website&rdquo; and
+                &ldquo;something a small business can actually afford&rdquo; was
+                wider than it should be.
+              </p>
+              <p>
+                CS-Web Studio is the answer to that gap. One person. Modern
+                tools. Honest pricing. Sites built the way a startup would build
+                them, sold at a price a barbershop or a tutor or a cafe can pay
+                without flinching.
+              </p>
+              <p>
+                The first real client was a regional nonprofit, the SGV
+                Christian Club Collective. Co-built the site over a couple of
+                weekends. It taught me what every project since has been
+                measured against: ship fast, keep it calm, make every CTA do
+                real work.
+              </p>
+              <p className="text-zinc-200 font-medium">
+                That is the bar. Every site after this one is held to it.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -105,7 +161,7 @@ export default function AboutPage() {
               Principles
             </p>
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gradient">
-              Why solo works.
+              How the studio operates.
             </h2>
           </div>
 

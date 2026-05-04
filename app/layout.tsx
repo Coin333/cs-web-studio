@@ -4,7 +4,6 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { RevealProvider } from "@/components/RevealProvider";
-import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
@@ -56,13 +55,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased bg-zinc-950 text-zinc-100">
-        <SmoothScrollProvider>
-          <RevealProvider>
-            <Navbar />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
-          </RevealProvider>
-        </SmoothScrollProvider>
+        <RevealProvider>
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </RevealProvider>
         <Analytics />
         <SpeedInsights />
       </body>

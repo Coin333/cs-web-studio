@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, ExternalLink, MapPin, Sparkles } from "lucide-react";
 import { PROJECTS } from "@/lib/projects";
 import { MockScreen } from "@/components/MockScreen";
 
 export function Portfolio() {
-  const featured = PROJECTS.slice(0, 4);
+  const featured = PROJECTS[0];
+  if (!featured) return null;
 
   return (
     <section
@@ -18,90 +19,103 @@ export function Portfolio() {
               Recent work
             </p>
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gradient">
-              Real builds. Real outcomes.
+              One real, shipped client.
             </h2>
             <p className="mt-5 text-lg text-zinc-400 leading-relaxed">
-              One live project plus concept directions for the kinds of local
-              businesses I work with most. Each case study covers the problem,
-              approach, and outcome.
+              The portfolio is small on purpose. Every project listed went live
+              for a real client and is visitable on the open web.
             </p>
           </div>
           <Link
             href="/work"
             className="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-zinc-300 hover:text-white transition-colors"
           >
-            View all work
+            See the case study
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-          {featured.map((p) => (
-            <Link
-              key={p.slug}
-              href={`/work/${p.slug}`}
-              className="reveal group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 hover:border-zinc-700 transition-all duration-300"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${p.accent}`}
-                />
-                <div className="absolute inset-0 grid-bg opacity-40" />
-                <div className="absolute inset-6">
-                  <MockScreen project={p} screen={p.screens[0]} />
-                </div>
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-950/80 backdrop-blur border border-white/10 text-[11px] font-medium text-zinc-200">
-                  <span
-                    className="h-1.5 w-1.5 rounded-full"
-                    style={{
-                      background:
-                        p.status === "Live project" ? "#34d399" : p.bullet,
-                    }}
-                  />
-                  {p.status}
-                </div>
-                <div className="absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-zinc-950/80 backdrop-blur border border-white/10 text-[11px] font-medium text-zinc-300">
-                  <p.icon className="w-3 h-3" />
-                  {p.category}
-                </div>
+        <div className="reveal group relative overflow-hidden rounded-3xl border border-zinc-800 hover:border-zinc-700 bg-zinc-900/40 transition-colors">
+          <div className="grid md:grid-cols-5 gap-0">
+            <div className="md:col-span-3 p-6 md:p-10 lg:p-12 flex flex-col">
+              <div className="flex items-center flex-wrap gap-2 mb-5">
+                <span
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold"
+                  style={{
+                    background: `${featured.primary}22`,
+                    color: featured.text,
+                    border: `1px solid ${featured.primary}55`,
+                  }}
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  {featured.status}
+                </span>
+                <span className="inline-flex items-center gap-1 text-xs text-zinc-500">
+                  <MapPin className="w-3 h-3" />
+                  {featured.location}
+                </span>
+                <span className="inline-flex items-center gap-1 text-xs text-zinc-500">
+                  <Sparkles className="w-3 h-3" />
+                  First client
+                </span>
               </div>
+              <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-100">
+                {featured.name}
+              </h3>
+              <p className="mt-3 text-lg text-zinc-300">{featured.tagline}</p>
+              <p className="mt-3 text-sm text-zinc-400 leading-relaxed max-w-md">
+                {featured.blurb}
+              </p>
 
-              <div className="p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-zinc-100">
-                      {p.name}
-                    </h3>
-                    <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
-                      {p.tagline}
-                    </p>
+              <div className="mt-6 grid grid-cols-3 gap-3 max-w-md">
+                {featured.metrics.map((m) => (
+                  <div
+                    key={m.label}
+                    className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-3"
+                  >
+                    <div className="text-xl font-bold tracking-tight text-zinc-100">
+                      {m.value}
+                    </div>
+                    <div className="text-[11px] text-zinc-500 mt-0.5">
+                      {m.label}
+                    </div>
                   </div>
-                  <ArrowUpRight className="w-5 h-5 text-zinc-500 group-hover:text-indigo-400 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
-                </div>
-                <div className="mt-5 flex flex-wrap gap-1.5">
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 border border-white/10 text-zinc-300">
-                    <span className="h-1 w-1 rounded-full bg-indigo-400" />
-                    {p.metrics[0].value}
-                    <span className="text-zinc-500">{p.metrics[0].label}</span>
-                  </span>
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 border border-white/10 text-zinc-400">
-                    <MapPin className="w-3 h-3" />
-                    {p.location}
-                  </span>
-                </div>
+                ))}
               </div>
-            </Link>
-          ))}
-        </div>
 
-        <div className="mt-10 text-center md:hidden">
-          <Link
-            href="/work"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-300 hover:text-white transition-colors"
-          >
-            View all work
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+              <div className="mt-auto pt-8 flex flex-wrap items-center gap-3">
+                <Link
+                  href={`/work/${featured.slug}`}
+                  className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-lg shadow-indigo-500/25 cursor-pointer text-sm"
+                >
+                  Read the case study
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                {featured.liveUrl && (
+                  <a
+                    href={featured.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-100 font-medium px-5 py-2.5 rounded-xl transition-all duration-200 cursor-pointer text-sm"
+                  >
+                    Visit live site
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
+            </div>
+            <div className="md:col-span-2 relative p-6 md:p-8 flex items-center">
+              <div
+                className="absolute inset-0 opacity-50"
+                style={{
+                  background: `linear-gradient(135deg, ${featured.primary}22, transparent 60%)`,
+                }}
+              />
+              <div className="relative w-full">
+                <MockScreen project={featured} screen={featured.screens[0]} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
